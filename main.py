@@ -5,6 +5,7 @@ from Redundant_scripts.LectureVideosScraper import LectureVideosScraper
 from ScraperRegistry import ScraperRegistry
 from LectureNotesScraper import LectureNotesScraper
 from ScraperRegistryInitializer import initialize_scraper_registry
+
 FILE_NAME = "links.txt"
 
 file_reader = FileReader(FILE_NAME)
