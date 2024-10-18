@@ -3,9 +3,9 @@ import requests
 from ContentScraperFactory import *
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+import datetime
 
-
-class LectureNotesScraper(ContentScraperFactory):
+class NotesScraper(ContentScraperFactory):
     def scrape(self, link: str, folder_name: str, named: bool):
         # Step 1: Fetch the webpage content
         response = requests.get(link)
@@ -58,6 +58,10 @@ class LectureNotesScraper(ContentScraperFactory):
                 file_name = ''.join(c for c in file_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
             else:
                 file_name = download_link.split('/')[-1]
+            
+            # Add current timestamp to the filename
+            timestamp = datetime.datetime.now()
+            file_name = file_name + timestamp
 
             file_path = os.path.join(course_directory, file_name)
             print(f"Downloading {file_name}...")

@@ -3,7 +3,7 @@ from SectionExtracter import SectionExtracter
 from VideoLecturesScraper import VideoLecturesScraper
 from Redundant_scripts.LectureVideosScraper import LectureVideosScraper
 from ScraperRegistry import ScraperRegistry
-from LectureNotesScraper import LectureNotesScraper
+from NotesScraper import NotesScraper
 from ScraperRegistryInitializer import initialize_scraper_registry
 
 FILE_NAME = "links.txt"
