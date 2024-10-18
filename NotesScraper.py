@@ -61,7 +61,7 @@ class NotesScraper(ContentScraperFactory):
             
             # Add current timestamp to the filename
             timestamp = datetime.datetime.now()
-            file_name = file_name + timestamp
+            file_name = timestamp + "_" + file_name
 
             file_path = os.path.join(course_directory, file_name)
             print(f"Downloading {file_name}...")
