@@ -1,5 +1,4 @@
 import ContentScraperFactory
-import Redundant_scripts.LectureVideosScraper as LectureVideosScraper
 import VideoLecturesScraper
 import DefaultScraper
 class ScraperRegistry:

@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import re
 
 class VideoLecturesScraper(ContentScraperFactory):
     def scrape(self, link: str, folder_name: str, named: bool):
@@ -40,7 +41,7 @@ class VideoLecturesScraper(ContentScraperFactory):
         driver.get(lecture_url)
         
         # Wait for the page to load and then click the "Transcript" button
-        time.sleep(4)  # Adjust the delay if necessary for slower connections
+        time.sleep(2)  # Adjust the delay if necessary for slower connections
         
         try:
             transcript_button = driver.find_element(By.XPATH, "//button[contains(@aria-controls, 'transcript')]")
@@ -82,7 +83,7 @@ class VideoLecturesScraper(ContentScraperFactory):
             # Find the anchor tag that contains the course title
             course_title_tag = soup.find('a', class_="text-capitalize m-0 text-white")
             if course_title_tag:
-                return self.sanitize_filename(course_title_tag.text.strip())
+                return re.sub(r'[^a-zA-Z0-9]', '', self.sanitize_filename(course_title_tag.text.strip()))
             else:
                 print("Course title not found, using default folder name.")
                 return "Introduction to Algorithms"  # Fallback name

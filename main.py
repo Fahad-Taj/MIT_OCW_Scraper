@@ -1,7 +1,6 @@
 from FileReader import FileReader
 from SectionExtracter import SectionExtracter
 from VideoLecturesScraper import VideoLecturesScraper
-from Redundant_scripts.LectureVideosScraper import LectureVideosScraper
 from ScraperRegistry import ScraperRegistry
 from NotesScraper import NotesScraper
 from ScraperRegistryInitializer import initialize_scraper_registry

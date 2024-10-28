@@ -1,0 +1,14 @@
+dir /s /a:-d /b | find /c /v ""
+
+
+- Brain structure and its origins
+Audio Lectures
+
+- Teaching College-Level Science and Engineering
+Video Discussions
+
+- Small-Molecule Spectroscopy and Dynamics
+Video Lectures - Download transcripts manually
+
+- Geometric Folding Algorithms: Linkages, Origami, Polyhedra
+Class and Lecture Videos - Download transcripts manually

@@ -3,7 +3,8 @@ import requests
 from ContentScraperFactory import *
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-import datetime
+import time
+import re
 
 class NotesScraper(ContentScraperFactory):
     def scrape(self, link: str, folder_name: str, named: bool):
@@ -24,7 +25,7 @@ class NotesScraper(ContentScraperFactory):
         if not course_name_tag:
             print("Course name not found.")
             return
-        course_name = course_name_tag.text.strip()
+        course_name = re.sub(r'[^a-zA-Z0-9]', '', course_name_tag.text.strip())
 
         # Step 5: Create the directory structure
         course_directory = os.path.join(course_name, folder_name)
@@ -54,14 +55,16 @@ class NotesScraper(ContentScraperFactory):
             download_link = urljoin(resource_url, download_link_tag['href'])
 
             # Step 9: Download the file
+            # Sleep for 1 second to prevent rate limiting
+            # time.sleep(1)
             if(named):
                 file_name = ''.join(c for c in file_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
             else:
                 file_name = download_link.split('/')[-1]
             
             # Add current timestamp to the filename
-            timestamp = datetime.datetime.now()
-            file_name = timestamp + "_" + file_name
+            timestamp = time.time()
+            file_name = str(timestamp) + "_" + file_name
 
             file_path = os.path.join(course_directory, file_name)
             print(f"Downloading {file_name}...")
